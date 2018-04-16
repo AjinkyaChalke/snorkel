@@ -82,9 +82,12 @@ class Spacy(Parser):
         :param lang:
         :return:
         '''
-        if not Spacy.model_installed(lang):
-            download(lang)
-        return spacy.load(lang)
+        # if not Spacy.model_installed(lang):
+        #     download(lang)
+        # return spacy.load(lang)
+        from pathlib import Path
+        output_directory = Path('model')
+        return spacy.load(lang, path=output_directory)
 
     def connect(self):
         return ParserConnection(self)
